@@ -1,6 +1,7 @@
 function initializeMap(curbInfo, events) {
   const map = L.map('map').setView([39.95, -75.16], 15); // center of Philadelphia
-  L.tileLayer('https://api.mapbox.com/styles/v1/ltscqian/clop0wsxp00cr01qq0kjz1du0/tiles/256/{z}/{x}/{y}@2x?access_token={apiKey}', {
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/ltscqian/clvcrfxcn04dr01pk2ig08a1e/tiles/256/{z}/{x}/{y}@2x?access_token={apiKey}', {
     apiKey: 'pk.eyJ1IjoibHRzY3FpYW4iLCJhIjoiY2t1MGhqcDc2MWU2dzJ1dGh1MnRlanJkYiJ9.evZuw4tNS1sR4QF9vta6xQ',
     maxZoom: 24,
     attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
