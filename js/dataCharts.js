@@ -48,7 +48,12 @@ window.onload = function () {
         }]
       }
     });
+    // need to add event bus here, and deliever curb id 
     jQuery.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
+      // create a subset of data
+      //dataselect = curbInfo.features.filter(function(d) {
+        //replace data with dataselect
+        
       for(var i = 0; i < data.length; i++){
         dataPoints1.push({x: new Date(data[i].date), y: [Number(data[i].open), Number(data[i].high), Number(data[i].low), Number(data[i].close)]});
         dataPoints2.push({x: new Date(data[i].date), y: Number(data[i].close)});

@@ -64,6 +64,9 @@ body {
   font-size: 2vh;
   padding-right: 1cap;
 }
+
+
+
 .head-right-animated-button {
   position: absolute;
   right: 10px;  /* 10px from the right edge of the header */
@@ -119,6 +122,8 @@ body {
   position: relative;
   display: inline-block;
   padding: 12px 24px;
+
+  height: 100%;
   border: none;
   font-size: 16px;
   background-color: inherit;
