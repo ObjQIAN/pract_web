@@ -1,0 +1,364 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+.leaflet-popup-content-wrapper {
+  background-color: rgb(70, 77, 80);
+  opacity: 0.85;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+
+  font-weight: bold;
+  color: white;
+}
+
+.leaflet-popup-tip-container {
+}
+
+.country-name  {
+  font-family: 'Permanent Marker';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.map {
+  height: 50vh;
+  background-color: aliceblue;  
+  position: absolute;
+  bottom: 0px; 
+  right: 0px;
+  width: 80%;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.header-contianer{
+  width: 100%;
+  height: 5vh;
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #212529!important;
+}
+
+.header_sw{
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+
+  list-style: none;
+}
+
+#text-white{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2vh;
+  padding-right: 1cap;
+}
+.head-right-animated-button {
+  position: absolute;
+  right: 10px;  /* 10px from the right edge of the header */
+  top: 10px; 
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px #ffffff20;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.head-right-animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #ff9d00;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.head-right-animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.head-right-animated-button:hover {
+  box-shadow: 0 0 0 5px #ff006a60;
+  color: #ffffff;
+}
+
+.head-right-animated-button:active {
+  scale: 0.95;
+}
+
+.head-right-animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+.head-animated-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px #ffffff20;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.head-animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #a2b3c2;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.head-animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.head-animated-button:hover {
+  box-shadow: 0 0 0 5px #2195f360;
+  color: #ffffff;
+}
+
+.head-animated-button:active {
+  scale: 0.95;
+}
+
+.head-animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+.navbar-brand{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5vh;
+}
+
+.leftside-text {
+  font-family: Arial, sans-serif; /* Clean, modern font */
+  color: #333; /* Dark grey for better readability */
+  /* background-color: #f8f8f800; Light background to reduce eye strain */
+  padding: 20px; /* Adds space inside the container */
+  border-radius: 8px; /* Soft rounded corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  max-width: 600px; /* Limits the width for optimal line length */
+  margin: auto; /* Centers the div */
+}
+
+.leftside-text h1 {
+  font-size: 24px; /* Makes header larger and more prominent */
+  color: #0077cc; /* Adds a touch of color to the header */
+}
+
+.leftside-text ul {
+  padding-left: 20px; /* Proper indentation for list */
+  line-height: 1.6; /* Increases line height for better readability */
+}
+
+.leftside-text li {
+  margin-bottom: 10px; /* Adds space between list items */
+}
+
+
+.additional-instruction {
+  font-style: italic; /* Differentiates instruction text with styling */
+  color: #555; /* Slightly lighter text for emphasis */
+  background-color:rgba(255, 255, 128, .5); /* Lighter background for emphasis */
+  margin: 10px;
+  padding-top: 10px 5px 10px 5px; /* Separates the text from the list */
+  border-top: 1px solid #ccc; /* A line to visually separate sections */
+}
+
+#stateDropdown {
+  margin-left: 5%;
+  width: 200px; /* Set the width of the dropdown */
+  padding: 8px 12px; /* Add some padding inside the dropdown */
+  border: 2px solid #ccc; /* A light grey border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: white; /* White background color */
+  font-size: 16px; /* A slightly larger font size for readability */
+  cursor: pointer; /* Cursor to indicate it's clickable */
+}
+
+#stateDropdown:focus {
+  border-color: #0077cc; /* Highlight color when focused */
+  outline: none; /* Remove the default focus outline */
+}
+
+#download-combined-chart{
+  align-items: center;
+  appearance: none;
+  background-color: #95b4c4;
+  border-radius: 4px;
+  border-width: 0;
+  height: auto;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 2.5rem;
+  justify-content: center;
+  line-height: 1.5;
+  padding-bottom: calc(.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(.5em - 1px);
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s ease-in-out;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap
+}
+
+#show-support{
+  align-items: center;
+  appearance: none;
+  background-color: #284554;
+  border-radius: 4px;
+  border-width: 0;
+  height: auto;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 2.5rem;
+  justify-content: center;
+  line-height: 1.5;
+  padding-bottom: calc(.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(.5em - 1px);
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s ease-in-out;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap
+}
+
+#country-counter{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.myChart  {
+  width: 800px;
+  height: 600px;
+}
+
+.list-container {
+  height: 120px;
+  overflow-y: scroll;
+  border: 0.25px solid rgb(165, 165, 165);
+}
+
+#country-name-filter{
+  padding: 0.25rem;
+  width: 17%;
+  height: auto;
+  position: absolute;
+  height: 40px;
+  text-indent: 33px;
+  border-radius: 10px;
+  margin-left: 1%;
+  border: 0.25px solid rgb(165, 165, 165);
+}
+
+#selected-countries #clear-country-filter {
+  margin-left: 1rem;
+}
+
+#country-list  {
+  margin-left: 0%;
+  padding-left: 13%;
+}
+
+#plot-container {
+  width: 95%;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.left-side {
+  width: 20%;
+  height: 95vh;
+  background-color: rgb(165, 165, 165);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-side{
+  width: 80%;
+  height: 45vh;
+  position: absolute;
+  top: 5vh;
+  right: 0px;
+  background-color: rgb(219, 219, 219);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 425px) {  
+  main {
+    flex-direction: column-reverse;
+  }
+  
+  .map {
+    height: 50vh; 
+  }
+ 
+  #station-name-filter {
+    padding: 0.5rem;
+    width: 100%;
+  }
+}

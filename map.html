@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Loading Zones</title>
+   <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="https://canvasjs.com/assets/css/jquery-ui.1.12.1.min.css">
+
+  </head>
+  <body>
+    <div class = 'header-contianer'>
+      <header class = 'header_sw' >
+        <h1 id = 'text-white'>Smart Loading Zones: Predict Demand</h1>
+
+        <button class="head-animated-button">
+          <span>Home</span>
+          <span></span>
+        </button>
+        <button class="head-animated-button">
+          <span>Tool</span>
+          <span></span>
+        </button>
+        <button class="head-animated-button">
+          <span>Resource</span>
+          <span></span>
+        <button class="head-right-animated-button">
+          <span>Login</span>
+          <span></span>
+        </button>
+
+  
+      </header>
+    </div>
+
+    <main>
+
+      
+      <div id="map" class="map" style="width: 99%; height: 95%;"></div>
+
+       
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-ui.1.12.1.min.js"></script>
+    <!-- <script type="text/javascript">
+      window.onload = function () {
+  var dataPoints1 = [], dataPoints2 = [] ;
+  var stockChart = new CanvasJS.StockChart("chartContainer", {
+    title:{
+      text:"StockChart with jQueryUI DatePicker",
+      fontFamily: "helvetica"
+    },
+    subtitles: [{
+      text: "Click on inputfields to update the range using datepicker",
+      fontFamily: "helvetica"
+    }],
+    rangeChanged: function(e) {
+      if(e.source == "inputFields") {
+        hideDatePicker();
+      }
+    },
+    charts: [{
+      axisX: {
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true
+        }
+      },
+      axisY: {
+        prefix: "€"
+      },
+      toolTip: {
+        shared: true
+      },
+      data: [{
+        type: "ohlc",
+        name: "Litecoin Price",
+        yValueFormatString: "€#,###.##",
+        dataPoints : dataPoints1
+      }]
+    }],
+    rangeSelector: {
+      inputFields: {
+        startValue: new Date(2018, 02, 01),
+        endValue: new Date(2018, 04, 01)
+      }
+    },
+    navigator: {
+      data: [{
+        dataPoints: dataPoints2
+      }]
+    }
+  });
+  jQuery.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
+    for(var i = 0; i < data.length; i++){
+      dataPoints1.push({x: new Date(data[i].date), y: [Number(data[i].open), Number(data[i].high), Number(data[i].low), Number(data[i].close)]});
+      dataPoints2.push({x: new Date(data[i].date), y: Number(data[i].close)});
+    }
+    stockChart.render();
+    //add jQuery UI DatePicker to inputFields
+    jQuery(".canvasjs-input-field").each(function(index) {
+      min = new Date(dataPoints2[0].x);
+      max = new Date(dataPoints2[dataPoints2.length-1].x);
+      jQuery(this).datepicker({
+        defaultDate: index === 0 ?  min : max,
+        minDate: index === 0 ? min : new Date(stockChart.rangeSelector.inputFields.get("startValue")),
+        maxDate: index == 0 ? new Date(stockChart.rangeSelector.inputFields.get("endValue")) : max,
+        dateFormat: "yy-mm-dd",
+        onSelect: function(dateText) {
+          var event = new Event("change");
+          if(index === 0) {
+            jQuery(jQuery(".canvasjs-input-field")[0]).val(new Date(dateText));
+            jQuery(".canvasjs-input-field")[0].dispatchEvent(event);
+            jQuery(jQuery(".canvasjs-input-field")[1]).datepicker("option","minDate", new Date(dateText) );
+          } else {
+            jQuery(jQuery(".canvasjs-input-field")[1]).val(new Date(dateText));
+            jQuery(".canvasjs-input-field")[1].dispatchEvent(event);
+            jQuery(jQuery(".canvasjs-input-field")[0]).datepicker("option","maxDate", new Date(dateText) );
+          }
+        }
+      });
+    });
+    jQuery(window).on("blur", function(){
+      hideDatePicker();
+    });
+  });
+  function hideDatePicker() {
+    jQuery(".canvasjs-input-field").each(function() {
+      jQuery(this).datepicker("hide");
+    });
+  }
+}
+</script>-->
+  </body>
+</html>
