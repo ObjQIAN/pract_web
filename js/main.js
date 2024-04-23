@@ -12,6 +12,9 @@ import { dateChart } from './dataCharts.js';
 
 const CurbInfoResp = await fetch('https://raw.githubusercontent.com/ObjQIAN/warehousepub/main/filtered.geojson');
 const CurbInfo = await CurbInfoResp.json();
+
+const CurbInfoRespA = await fetch('https://canvasjs.com/data/docs/ltceur2018.json');
+const dataForCurb = await CurbInfoRespA.json();
 var countryToPlot = [];
 const events = new EventTarget();
 
@@ -43,6 +46,6 @@ initializeList(CurbInfo, events,countryToPlot);
 initializeSearch(CurbInfo, events);
 initializeContinentFilter(CurbInfo, events);
 initializeplot(CurbInfo, events,countryToPlot);
-dateChart(CurbInfo, events);
+dateChart(dataForCurb, events);
 updateUrl(events) ;
 showSupport()

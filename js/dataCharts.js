@@ -1,6 +1,5 @@
-function dateChart(curbInfo, events) {
-
-window.onload = function () {
+function dateChart(dataForCurb, events) {
+  window.onload = function () {
     var dataPoints1 = [], dataPoints2 = [] ;
     var stockChart = new CanvasJS.StockChart("chartContainer", {
       title:{
@@ -16,9 +15,7 @@ window.onload = function () {
           hideDatePicker();
         }
       },
-      backgroundColor: "transparent",
       charts: [{
-        
         axisX: {
           crosshair: {
             enabled: true,
@@ -51,22 +48,23 @@ window.onload = function () {
       }
     });
     // need to add event bus here, and deliever curb id 
-    jQuery.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
+    //jQuery.getJSON("https://canvasjs.com/data/docs/ltceur2018.json", function(data) {
       // create a subset of data
       //dataselect = curbInfo.features.filter(function(d) {
         //replace data with dataselect
+    // Assume dataForCurb is already defined and contains the data needed for the chart
+    for(var i = 0; i < dataForCurb.length; i++){
+        dataPoints1.push({x: new Date(dataForCurb[i].date), y: [Number(dataForCurb[i].open), Number(dataForCurb[i].high), Number(dataForCurb[i].low), Number(dataForCurb[i].close)]});
+        dataPoints2.push({x: new Date(dataForCurb[i].date), y: Number(dataForCurb[i].close)});
+    }
+    stockChart.render();
 
-      for(var i = 0; i < data.length; i++){
-        dataPoints1.push({x: new Date(data[i].date), y: [Number(data[i].open), Number(data[i].high), Number(data[i].low), Number(data[i].close)]});
-        dataPoints2.push({x: new Date(data[i].date), y: Number(data[i].close)});
-      }
-      stockChart.render();
-      //add jQuery UI DatePicker to inputFields
-      jQuery(".canvasjs-input-field").each(function(index) {
-        min = new Date(dataPoints2[0].x);
-        max = new Date(dataPoints2[dataPoints2.length-1].x);
+    // Add jQuery UI DatePicker to inputFields
+    jQuery(".canvasjs-input-field").each(function(index) {
+        var min = new Date(dataPoints2[0].x);
+        var max = new Date(dataPoints2[dataPoints2.length-1].x);
         jQuery(this).datepicker({
-          defaultDate: index === 0 ?  min : max,
+          defaultDate: index === 0 ? min : max,
           minDate: index === 0 ? min : new Date(stockChart.rangeSelector.inputFields.get("startValue")),
           maxDate: index == 0 ? new Date(stockChart.rangeSelector.inputFields.get("endValue")) : max,
           dateFormat: "yy-mm-dd",
@@ -83,18 +81,19 @@ window.onload = function () {
             }
           }
         });
-      });
-      jQuery(window).on("blur", function(){
-        hideDatePicker();
-      });
     });
+
+    jQuery(window).on("blur", function(){
+        hideDatePicker();
+    });
+
     function hideDatePicker() {
       jQuery(".canvasjs-input-field").each(function() {
         jQuery(this).datepicker("hide");
       });
     }
-  }
 }
+};
 
 export {
     dateChart,
