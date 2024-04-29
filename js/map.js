@@ -8,6 +8,7 @@ function initializeMap(curbInfo, events) {
   }).addTo(map);
  
   const curbLayer = L.layerGroup(); 
+  const poiLayer = L.layerGroup();
   curbLayer.addTo(map); 
 
 
@@ -28,7 +29,7 @@ function updateWorldMap(curbInfo, curbLayer) {
 
     style: getstyle,
     onEachFeature: function (feature, layer) {
-      
+
       if (feature.properties) {
         
         const popupContent = `
@@ -37,14 +38,10 @@ function updateWorldMap(curbInfo, curbLayer) {
           <p class="continent">End Street: ${feature.properties.end_st_}</p>
           <p class="continent">Street Policy: ${feature.properties.categry}</p>
           <p class="area_km2">Street Class: ${feature.properties.Road_Class}</p>
-
         `;
-
-
         layer.bindPopup(popupContent);
 
       };}
-
 
   }).addTo(curbLayer);
   
@@ -53,7 +50,7 @@ function updateWorldMap(curbInfo, curbLayer) {
 //updatePieChartWithFilteredCountries(feature.properties);
 
 function getstyle(feature) {
-  console.log('Styling feature:', feature);
+ // console.log('Styling feature:', feature);
   // Example: Set color and line weight based on a property
   let color = '#FF0000'; // default color
   let weight = 5; // default line weight

@@ -2,7 +2,7 @@ import { initializeMap } from './map.js';
 
 import { initializeList } from './list.js';
 import { initializeSearch } from './search.js';
-import { initializeContinentFilter } from './filterCon.js'; 
+import { initializeContinentFilter } from './filterConBack.js'; 
 import { initializeplot } from './plot.js';
 import { handleSearchBoxInput } from './plot.js';
 import { updateUrl } from './updateUrl.js';
