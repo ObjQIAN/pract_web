@@ -37,12 +37,26 @@
           </button>
         </a>
 
-        <a href=".\map.html" class = 'tab-button'>
+        <a href="#" class="tab-button" id="loginButton">
           <button class="head-right-animated-button">
             <span>Login</span>
             <span></span>
           </button>
         </a>
+        
+        <!-- Modal for Login -->
+        <div id="loginModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <form action="/submit-your-login-form" method="post">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required><br><br>
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required><br><br>
+              <button type="submit">Login</button>
+            </form>
+          </div>
+        </div>
 
   
       </header>
@@ -126,17 +140,21 @@
       <div id="map" class="map"></div>
       <div class="right-side">
         <div class="rightside-text" style="margin-left: 5%;">
-          <h2>Your Selection:</h2>
-          <br>
-          <p>                    ** St</p>
-          <br>
-          <br>
-          <br>
-          <p>placeholder for text</p>
-          <p>placeholder for images</p>
+          
+            <h2>Your Selection:</h2>
+            
+            <p id="selected-feature"></p>
+          
+          
+          
+           
+            
+        </div>
+        <div class="dynamics-container" style="width: 35%;">
+          <canvas id="myChart"></canvas>
         </div>
         </div>
-        <div id="chartContainer" style="height: 43vh; width: 50%;overflow: hidden;position: absolute;right: 0px;"></div>
+        <div id="chartContainer" style="height: 43vh; width: 50%;overflow: hidden;position: absolute;right: 0px"></div>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
