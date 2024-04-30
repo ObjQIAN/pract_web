@@ -27,13 +27,22 @@ function initializeContinentFilter(curbInfo, events) {
     select1.selectedIndex = 0;
     select2.selectedIndex = 0;
 
-    // Optionally, you can also clear any stored or displayed information related to previous selections
-    // For example, clear any displayed results, reset variables, etc.
-    // Here's how you might reset and dispatch an event if needed
+    // Update the selectors based on the new selection
     events.dispatchEvent(new CustomEvent('reset-curbs')); // This is optional and based on your app's logic
+    
+    //this is a fail apprently
+    events.addEventListener('reset-curbs', function() {
+        console.log("Filtered curbs data being cleared.");
+        filteredCurbsDataStore.clear();
+        updateUIAccordingly();
+    });
 
+
+    initializeContinentFilter(curbInfo, events);
     console.log("Selections cleared");
 });
+
+
 
 }
 
