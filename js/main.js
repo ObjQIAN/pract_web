@@ -2,11 +2,11 @@ import { initializeMap } from './map.js';
 
 import { initializeList } from './list.js';
 import { initializeSearch } from './search.js';
-import { initializeContinentFilter } from './filterConBack.js'; 
+import { initializeContinentFilter } from './filterCon.js'; 
 import { initializeplot } from './plot.js';
 import { handleSearchBoxInput } from './plot.js';
 import { updateUrl } from './updateUrl.js';
-import { showSupport } from './showSupport.js';
+//import { showSupport } from './showSupport.js';
 import { dateChart } from './dataCharts.js';  
 
 
@@ -48,4 +48,4 @@ initializeContinentFilter(CurbInfo, events);
 initializeplot(CurbInfo, events,countryToPlot);
 dateChart(dataForCurb, events);
 updateUrl(events) ;
-showSupport()
+//showSupport()

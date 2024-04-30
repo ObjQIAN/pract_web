@@ -296,6 +296,39 @@ main {
   width: 100%;
 }
 
+.selectorContainer {
+  width: 90%;
+  margin: 0 auto; /* Centers the container */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(173, 173, 173, 0.1); /* Subtle shadow for better depth */
+  border-radius: 8px; /* Rounded corners */
+  /*background-color: #f9f9f9;  Light grey background */
+}
+
+.headingText {
+  margin-left: 5%;
+  color: #35373b; /* Dark grey color for text */
+  font-size: 1.2em;
+  margin-bottom: 10px; /* Space below headings */
+}
+
+.select {
+  width: 90%;
+  margin-left: 5%;
+  padding: 10px 15px;
+  border: 2px solid #ddd; /* Light grey border */
+  border-radius: 4px; /* Rounded borders for dropdowns */
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(226, 226, 226, 0.1); /* Inner shadow for depth */
+  outline: none; /* Removes the default focus outline */
+  font-size: 1em;
+  color: #666; /* Dark grey color for text */
+}
+
+.select:focus {
+  border-color: #0056b3; /* Blue border on focus for better visibility */
+}
+
 .myChart  {
   width: 800px;
   height: 600px;
@@ -317,6 +350,21 @@ main {
   border-radius: 10px;
   margin-left: 1%;
   border: 0.25px solid rgb(165, 165, 165);
+}
+
+#clear-selection {
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 1em;
+  color: white;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#clear-selection:hover {
+  background-color: #0056b3;
 }
 
 #selected-countries #clear-country-filter {

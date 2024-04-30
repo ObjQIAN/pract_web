@@ -14,10 +14,10 @@ function initializeMap(curbInfo, events) {
 
   updateWorldMap(curbInfo, curbLayer); // add all the countries to the map
 
-  events.addEventListener('filter-curbs', (evt) => { // when the user filters the stations
-    const filteredCurb = evt.detail.filteredCurb;
-    updateMapCurbs(filteredCurb, curbLayer);
-  });
+  //events.addEventListener('filter-curbs', (evt) => { // when the user filters the stations
+   // const filteredCurb = evt.detail.filteredCurb;
+    //updateMapCurbs(filteredCurb, curbLayer);
+  //});
   return map;
 }
 
