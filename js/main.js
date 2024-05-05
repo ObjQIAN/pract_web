@@ -3,8 +3,8 @@ import { initializeMap } from './map.js';
 import { initializeList } from './list.js';
 import { initializeSearch } from './search.js';
 import { initializeContinentFilter } from './filterCon.js'; 
-import { initializeplot } from './plot.js';
-import { handleSearchBoxInput } from './plot.js';
+//import { initializeplot } from './plot.js';
+//import { handleSearchBoxInput } from './plot.js';
 import { updateUrl } from './updateUrl.js';
 //import { showSupport } from './showSupport.js';
 import { initializeDynamics } from './initializeDynamics.js';
@@ -16,6 +16,9 @@ const CurbInfo = await CurbInfoResp.json();
 
 const CurbInfoRespA = await fetch('https://canvasjs.com/data/docs/ltceur2018.json');
 const dataForCurb = await CurbInfoRespA.json();
+
+const poiInfoRespA = await fetch('https://raw.githubusercontent.com/ObjQIAN/pract_web/main/data/poi_pt.geojson');
+const poiInfo = await poiInfoRespA.json();
 
 
 var countryToPlot = [];
@@ -71,12 +74,12 @@ function initializeFromUrl(events,CurbInfo) {
   }
 
 
-initializeMap(CurbInfo, events);
+initializeMap(CurbInfo,poiInfo, events);
 
 initializeList(CurbInfo, events,countryToPlot);
 initializeSearch(CurbInfo, events);
 initializeContinentFilter(CurbInfo, events);
-initializeplot(CurbInfo, events,countryToPlot);
+//initializeplot(CurbInfo, events,countryToPlot);
 initializeDynamics(CurbInfo, events);
 dateChart(dataForCurb, events);
 updateUrl(events) ;
