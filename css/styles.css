@@ -18,6 +18,10 @@ body {
 .leaflet-popup-tip-container {
 }
 
+.leaflet-heatmap-layer {
+  opacity: .7;
+  }
+
 /* Modal Base */
 .modal {
   display: none; /* Hidden by default */

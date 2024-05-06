@@ -1,7 +1,7 @@
 function initializeMap(curbInfo,poiInfo, events) {
   const map = L.map('map').setView([39.95, -75.16], 15); // center of Philadelphia
 
-  L.tileLayer('https://api.mapbox.com/styles/v1/ltscqian/clvcrfxcn04dr01pk2ig08a1e/tiles/256/{z}/{x}/{y}@2x?access_token={apiKey}', {
+  var mapBoxBase = L.tileLayer('https://api.mapbox.com/styles/v1/ltscqian/clvcrfxcn04dr01pk2ig08a1e/tiles/256/{z}/{x}/{y}@2x?access_token={apiKey}', {
     apiKey: 'pk.eyJ1IjoibHRzY3FpYW4iLCJhIjoiY2t1MGhqcDc2MWU2dzJ1dGh1MnRlanJkYiJ9.evZuw4tNS1sR4QF9vta6xQ',
     maxZoom: 24,
     attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
@@ -17,9 +17,26 @@ function initializeMap(curbInfo,poiInfo, events) {
     const filteredCurbs = filteredCurbsGrp.length > 0 ? filteredCurbsGrp[0] : null;
     zoomtoFilteredCurbs(filteredCurbs, curbLayer);
   });
-
+  var baseMaps = {
+    "Base Map": mapBoxBase,
+  };
+  var overlayMaps = {
+    "Curbs": curbLayer,
+    "Points of Interest": poiLayer
+  };
+  var layerControl = L.control.layers(baseMaps,overlayMaps).addTo(map)
   updateWorldMap(curbInfo, curbLayer); // add all the countries to the map
   updatePOIMap(poiInfo, poiLayer);
+  /*  var markers = L.markerClusterGroup();
+  L.geoJSON(poiInfo, {
+    onEachFeature: function (feature, layer) {
+      var marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]);
+      marker.bindPopup(`Poi Type: ${feature.properties.simple_category}`);
+      markers.addLayer(marker);
+    }
+  });
+  map.addLayer(markers); */ // using marker cluster group to cluster the markers
+
 
   //events.addEventListener('filter-curbs', (evt) => { // when the user filters the stations
    // const filteredCurb = evt.detail.filteredCurb;
@@ -62,6 +79,7 @@ function updatePOIMap(poiInfo, poiLayer) {
   });
 
   poiLayer.addLayer(heatmap);  // Add the heatmap layer to the existing layer group
+
 }
 
 function updateWorldMap(curbInfo, curbLayer) {
@@ -77,7 +95,7 @@ function updateWorldMap(curbInfo, curbLayer) {
         const popupContent = `
           <h2 class="country-name">${feature.properties.strt_nm}</h2>
           <p class="continent">Start Street: ${feature.properties.strt_s_}</p>
-          <p class="continent">End Street: ${feature.properties.end_st_}</p>
+          <p class="continent">End Street: ${feature.properties.TARGET_FID}</p>
           <p class="continent">Street Policy: ${feature.properties.categry}</p>
           <p class="area_km2">Street Class: ${feature.properties.Road_Class}</p>
         `;
