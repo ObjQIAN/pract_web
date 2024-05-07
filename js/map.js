@@ -29,11 +29,11 @@ function initializeMap(curbInfo,poiInfo, events) {
       markerLayer.addLayer(marker);
       marker.bindPopup(
         `
-          <h2 class="country-name">${filteredCurbs.properties.strt_nm}</h2>
-          <p class="continent">Start Street: ${filteredCurbs.properties.strt_s_}</p>
-          <p class="continent">End Street: ${filteredCurbs.properties.end_st_}</p>
-          <p class="continent">Street Policy: ${filteredCurbs.properties.rgltn_t}</p>
-          <p class="area_km2">Street Class: ${filteredCurbs.properties.Road_Class}</p>
+          <h2 class="country-name" style="font-family: Helvetica, Arial, sans-serif;">${filteredCurbs.properties.strt_nm}</h2>
+          <p class="continent" style="font-family: Helvetica, Arial, sans-serif;">Start Street: ${filteredCurbs.properties.strt_s_}</p>
+          <p class="continent" style="font-family: Helvetica, Arial, sans-serif;">End Street: ${filteredCurbs.properties.end_st_}</p>
+          <p class="continent" style="font-family: Helvetica, Arial, sans-serif;">Street Policy: ${filteredCurbs.properties.rgltn_t}</p>
+          <p class="area_km2" style="font-family: Helvetica, Arial, sans-serif;">Street Class: ${filteredCurbs.properties.Road_Class}</p>
         `
       );
       marker.openPopup();
@@ -128,11 +128,11 @@ function updateWorldMap(curbInfo, curbLayer) {
       if (feature.properties) {
         
         const popupContent = `
-          <h2 class="country-name">${feature.properties.strt_nm}</h2>
-          <p class="continent">Start Street: ${feature.properties.strt_s_}</p>
-          <p class="continent">End Street: ${feature.properties.end_st_}</p>
-          <p class="continent">Street Policy: ${feature.properties.rgltn_t}</p>
-          <p class="area_km2">Street Class: ${feature.properties.Road_Class}</p>
+          <h2 class="country-name" style="font-family: Helvetica, Arial, sans-serif;">${feature.properties.strt_nm}</h2>
+          <p class="continent" style="font-family: Helvetica, Arial, sans-serif;">Start Street: ${feature.properties.strt_s_}</p>
+          <p class="continent" style="font-family: Helvetica, Arial, sans-serif;">End Street: ${feature.properties.end_st_}</p>
+          <p class="continent" style="font-family: Helvetica, Arial, sans-serif;">Street Policy: ${feature.properties.rgltn_t}</p>
+          <p class="area_km2" style="font-family: Helvetica, Arial, sans-serif;">Street Class: ${feature.properties.Road_Class}</p>
         `;
         layer.bindPopup(popupContent);
 
