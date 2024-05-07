@@ -34,7 +34,11 @@ function initializeContinentFilter(curbInfo, events) {
     //this is a fail apprently
     events.addEventListener('reset-curbs', function() {
         //console.log("Filtered curbs data being cleared.");
-        filteredCurbsDataStore.clear();
+        let filteredCurbs = [];
+        filteredCurbs.length = 0;
+        const newEvent = new CustomEvent('filter-curb', { detail: { filteredCurbs } });
+        document.dispatchEvent(newEvent);
+        
         updateUIAccordingly();
     });
 

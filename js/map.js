@@ -6,7 +6,7 @@ function initializeMap(curbInfo,poiInfo, events) {
     maxZoom: 24,
     attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
   }).addTo(map);
- 
+
   const curbLayer = L.layerGroup(); 
   const poiLayer = L.layerGroup();
   const markerLayer = L.layerGroup();
@@ -101,12 +101,12 @@ function updatePOIMap(poiInfo, poiLayer) {
     blur: 30,           // Blur amount
     maxZoom: 17,        // Max zoom level on which the heat will be visualized
     gradient: {
-      0.0: '#00f',   // Blue
-      0.2: '#0ff',   // Cyan
-      0.4: '#0f0',   // Green
-      0.6: '#ff0',   // Yellow
-      0.8: '#f90',   // Orange
-      1.0: '#f00'    // Red
+      0.0: '#C8FDFF',   // Blue
+      0.2: '#74e9ee',   // Cyan
+      0.4: '#64e4c0',   // Green
+      0.6: '#85d983',   // Yellow
+      0.8: '#c3af33',   // Orange
+      1.0: '#eb7912'    // Red
     }  // Color gradient
   });
 
@@ -153,7 +153,6 @@ function getstyle(feature) {
           case "no_stopping":
               color = '#FFBC00';
               weight = 2;
-              
               break;
           case "parking":
               color = '#FF9D00';

@@ -16,7 +16,7 @@ function initializeDynamics(curbInfo, events) {
         var chartData = {
             labels: ['Healthcare', 'Civic', 'Commercial', 'Parking', 'School', 'Quick Grocery'],
             datasets: [{
-                label: 'Access Points',
+                label: 'Distance to Nearest Neighbors',
                 data: [
                     selectedFeature.properties.healthcare_nn1,
                     selectedFeature.properties.civic_nn1,
@@ -41,6 +41,7 @@ function initializeDynamics(curbInfo, events) {
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
+                
                 borderWidth: 1
             }]
         };

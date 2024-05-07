@@ -1,7 +1,7 @@
 import { initializeMap } from './map.js';
 
-import { initializeList } from './list.js';
-import { initializeSearch } from './search.js';
+
+
 import { initializeContinentFilter } from './filterCon.js'; 
 //import { initializeplot } from './plot.js';
 //import { handleSearchBoxInput } from './plot.js';
@@ -76,8 +76,7 @@ function initializeFromUrl(events,CurbInfo) {
 
 initializeMap(CurbInfo,poiInfo, events);
 
-initializeList(CurbInfo, events,countryToPlot);
-initializeSearch(CurbInfo, events);
+
 initializeContinentFilter(CurbInfo, events);
 //initializeplot(CurbInfo, events,countryToPlot);
 initializeDynamics(CurbInfo, events);

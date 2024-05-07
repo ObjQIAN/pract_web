@@ -1,8 +1,11 @@
 function dateChart(dataForCurb, events) {
  
-  var dataPoints1 = [];
+  
+    // need to add event bus here, and deliever curb id 
+    events.addEventListener('filter-curb', (evt) => {
+      var dataPoints1 = [];
   var stockChart = new CanvasJS.StockChart("chartContainer", {
-    
+    backgroundColor: "rgba(255,255,255, 0.5)",
     title: {
         text: "Curb Prediction Data",
         fontFamily: "helvetica"
@@ -33,8 +36,8 @@ function dateChart(dataForCurb, events) {
     }],
     rangeSelector: {
         inputFields: {
-            startValue: new Date(2025, 2, 1),
-            endValue: new Date(2025, 4, 1)
+            startValue: new Date(2024, 12, 1),
+            endValue: new Date(2025, 1, 1)
         }
     },
     navigator: {
@@ -44,10 +47,6 @@ function dateChart(dataForCurb, events) {
     }
 });
 
-    // need to add event bus here, and deliever curb id 
-    events.addEventListener('filter-curb', (evt) => {
-
-      
       const filteredCurbsGrp = evt.detail.filteredCurbs;
       //console.log('Filtered curbsbgrp:', filteredCurbsGrp);
       const filteredCurbs = filteredCurbsGrp.length > 0 ? filteredCurbsGrp[0] : null;
@@ -64,15 +63,13 @@ function dateChart(dataForCurb, events) {
       }, { datesSeen: {}, uniqueData: [] }).uniqueData;
       console.log('Unique Data:', uniqueByDateData);
       console.log('stockChart:', stockChart);
-    
-
-    uniqueByDateData.sort((a,b)=>{
+      uniqueByDateData.sort((a,b)=>{
       return new Date(b.date) - new Date(a.date);
-  })
-    console.log('Unique Data after sort:', uniqueByDateData);
-    // Assuming dataForCurb is already filtered and unique by date
+      })
+      console.log('Unique Data after sort:', uniqueByDateData);
+      // Assuming dataForCurb is already filtered and unique by date
 
-    uniqueByDateData.forEach(function(item) {
+      uniqueByDateData.forEach(function(item) {
         dataPoints1.push({
             x: new Date(item.date),
             y: Number(item.Prediction)  // Assuming 'Prediction' is the key for the data
@@ -86,6 +83,7 @@ function dateChart(dataForCurb, events) {
     }
       
   });
+ 
 };
 
 

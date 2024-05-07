@@ -7,8 +7,16 @@
     -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="css/styles.css">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    
+    <!--DECK.GL
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://unpkg.com/deck.gl@8.5/dist.min.js"></script>-->
+
+
     <link rel="stylesheet" href="https://canvasjs.com/assets/css/jquery-ui.1.12.1.min.css">
 
   </head>
@@ -16,14 +24,15 @@
     <div class = 'header-contianer'>
       <header class = 'header_sw' >
         <h1 id = 'text-white'>Smart Loading Zones: Predict Demand</h1>
-        <a href=".\map.html" class = 'tab-button'>
+
+        <a href=".\index.html" class = 'tab-button'>
           <button class="head-animated-button">
             <span>Home</span>
             <span></span>
           </button>
 
         </a>
-        <a href=".\index.html" class = 'tab-button'>
+        <a href=".\map.html" class = 'tab-button'>
           <button class="head-animated-button">
             <span>Tool</span>
             <span></span>
@@ -58,26 +67,111 @@
           </div>
         </div>
 
-
-
   
       </header>
     </div>
 
     <main>
-
-      
-      <div id="map" class="map" style="width: 100%; height: 95%;"></div>
-
+      <div class="left-side"> 
        
+        <div class="leftside-text">
+          <h1>How to Use This Tool</h1>
+          <ul>
+              <li>Choose a site in Philadelphia by dropping a pin.</li>
+              <li>Choose the date range for the prediction.</li>
+              <li>See the demand for the chosen site.</li>
+              <li>Visualize additional details about the curbs/area surrounding the curb.</li>
+          </ul>
+          <p class="additional-instruction">
+              You can also choose out of a set of development scenarios in the vicinity of your chosen site, and see changes predicted in demand with upcoming development.
+          </p>
+      </div>
+        <br> 
+        <div class="selectorContainer">
+          <h2 class="headingText">Select Street</h2>
+          <select class="select" id="on-select">
+            <option>Select a Street</option>
+          </select>
+          <br> 
+          <h2 class="headingText">Select Starting Street</h2>
+          <select class="select" id="start-select">
+            <option>Select Starting Street</option>
+          </select>
+          <br>
+          <h2 class="headingText">Select Ending Street</h2>
+          <select class="select" id="end-select">
+            <option>Select Ending Street</option>
+          </select>
+          <button id="clear-selection">Clear Selection</button>
+        </div>
+        <br>
+
+        <br>
+        <input type="text" id="country-name-filter" placeholder="Search by street name..."style="display: none;">
+        <br>
+        <br>
+        <br>
+        <div style="margin-left: 5%;display: none">        
+          Streets Found
+          <button id="clear-filter-button" style="display: none;">Clear filter</button> 
+        </div>
+
+        <section class="list-container" style="display: none;">
+          <ol id="country-list"></ol>
+        </section>
+        <p style="margin-left: 5%;display: none;">Selected Streets:</p>
+        <p id="selected-countries" style="margin-left: 5%;display: none;"></p>
+        <button id = 'clear-country-filter' style="margin-left: 10%;display: none;">Clear Selection</button>
+        
+        
+            
+         <!--        <select id="continent-filter">
+          <option value="">NOT WORKING</option>
+          <option value="Africa">Africa</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="America">America</option>
+          <option value="Oceania">Oceania</option>
+        </select>-->  
+
+        <!--<br>
+        <span id="changed"></span>
+        <br>
+        <div id="plot-container">
+          <canvas id="myChart"></canvas> 
+          <canvas id="myChart2"></canvas> 
+          <canvas id="myChart3"></canvas> 
+          <canvas id="myChart4"></canvas>
+        </div>-->  
+       
+      </div>
+      
+      <div id="map" class="map"></div>
+      <div class="right-side">
+        <div class="rightside-text" style="margin-left: 5%;">
+          
+            <h2>Your Selection:</h2>
+            
+            <p id="selected-feature"></p>
+          
+          
+          
+           
+            
+        </div>
+        <div class="dynamics-container" style="width: 37%;height: 70%">
+          <canvas id="myChart"></canvas>
+        </div>
+        </div>
+        <div id="chartContainer" style="height: 45%; width: 50%;overflow: hidden;position: absolute;right: 0px"></div>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="js/main.js"></script>
     <!-- Leaflet Heatmap Plugin -->
     <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery-ui.1.12.1.min.js"></script>
