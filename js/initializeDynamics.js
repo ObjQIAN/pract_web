@@ -7,9 +7,9 @@ function initializeDynamics(curbInfo, events) {
         const displayElement = document.getElementById('selected-feature');
         if (selectedFeature && selectedFeature.properties && selectedFeature.properties.strt_nm) {
             displayElement.innerHTML = `
-            <p id = 'filtered-curb-name-text'>${selectedFeature.properties.strt_nm},</p>
-            <p id = 'filtered-startend-name-text'>Starting on ${selectedFeature.properties.strt_s_},</p>
-            <p id = 'filtered-startend-name-text'>Ending on${selectedFeature.properties.end_st_}</p>`;
+            <p id = 'filtered-curb-name-text'>The curb is on${selectedFeature.properties.strt_nm},</p>
+            <p id = 'filtered-startend-name-text'>The curb starts on ${selectedFeature.properties.strt_s_},</p>
+            <p id = 'filtered-startend-name-text'>The curb ends on on${selectedFeature.properties.end_st_}</p>`;
          }    else {
             displayElement.textContent = "No selection made"; // Fallback text
         }

@@ -100,6 +100,7 @@ body {
 
 .header_sw{
   display: flex;
+  height: 5vh;
   flex-wrap: wrap;
   padding-left: 0;
   margin-bottom: 0;
