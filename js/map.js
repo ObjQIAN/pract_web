@@ -13,6 +13,8 @@ function initializeMap(curbInfo,poiInfo, events) {
   markerLayer.addTo(map);
   curbLayer.addTo(map); 
   poiLayer.addTo(map);
+  var legend = createLegend();
+  legend.addTo(map);
 
   events.addEventListener('filter-curb', (evt) => { // when the user filters the stations
     const filteredCurbsGrp = evt.detail.filteredCurbs;
@@ -51,11 +53,12 @@ function initializeMap(curbInfo,poiInfo, events) {
     "Base Map": mapBoxBase,
   };
   var overlayMaps = {
-    "Curbs": curbLayer,
-    "Points of Interest": poiLayer
+    "Curbs Policy": curbLayer,
+    "Places of Interest": poiLayer
     
   };
   var layerControl = L.control.layers(baseMaps,overlayMaps).addTo(map)
+  
   updateWorldMap(curbInfo, curbLayer); // add all the countries to the map
   updatePOIMap(poiInfo, poiLayer);
   /*  var markers = L.markerClusterGroup();
@@ -151,40 +154,40 @@ function getstyle(feature) {
       // Change color and weight based on the status property
       switch (feature.properties.rgltn_t) {
           case "no_stopping":
-              color = '#FFBC00';
-              weight = 2;
-              break;
-          case "parking":
-              color = '#FF9D00';
-              weight = 3;
-              break;
-          case "time_limited_parking":
-              color = '#FF4800';
+              color = '#3A3A3A';
               weight = 4;
               break;
-          case "loading":
-              color = '#FF5F47';
+          case "parking":
+              color = '#3EDBDA';
+              weight = 8;
+              break;
+          case "time_limited_parking":
+              color = '#D24ED9';
               weight = 5;
               break;
+          case "loading":
+              color = '#FFCE01';
+              weight = 9;
+              break;
           case "passenger":
-              color = '#FF4AD0';
-              weight = 7;
+              color = '#58B333';
+              weight = 5;
               break;
           case "pay_parking":
-              color = '#FF19A6';
-              weight = 9;
+              color = '#005BDB';
+              weight = 6;
               break;
           case "no_parking":
-              color = '#FF19A6';
-              weight = 9;
+              color = '#C41F1A';
+              weight = 4;
               break;
           case "no_standing":
-              color = '#FF19A6';
+              color = '#3A3A3A';
               weight = 9;
               break;
           default:
               color = '#FFDF19';
-              weight = 1;
+              weight = 3;
       }
   }
 
@@ -193,6 +196,42 @@ function getstyle(feature) {
       weight: weight,
       opacity: 1
   };
+}
+
+function createLegend() {
+  var legend = L.control({ position: 'topright' });
+
+  legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+      div.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';  // Set background color
+      div.style.padding = '10px';           // Add some padding
+      div.style.border = '2px solid #777';  // Add a border
+      div.style.borderRadius = '5px';       // Optional: Rounded corners
+      div.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.2)'; // Optional: Drop shadow for better visibility
+      var labels = [];
+      div.innerHTML += '<h3>Curbs Regulation</h3>';
+      var categories = {
+          "no_stopping": { color: '#3A3A3A', description: 'No Stopping' },
+          "parking": { color: '#3EDBDA', description: 'Parking' },
+          "time_limited_parking": { color: '#D24ED9', description: 'Time Limited Parking' },
+          "loading": { color: '#FFCE01', description: 'Loading' },
+          "passenger": { color: '#58B333', description: 'Passenger Loading' },
+          "pay_parking": { color: '#005BDB', description: 'Pay Parking' },
+          "no_parking": { color: '#C41F1A', description: 'No Parking' },
+          "no_standing": { color: '#3A3A3A', description: 'No Standing' }
+      };
+
+      // Generate a label with a colored square for each category
+      for (var key in categories) {
+          div.innerHTML += 
+              '<i style="background:' + categories[key].color + '; width: 12px; height: 12px; display: inline-block; margin-right: 5px;"></i> ' +
+              categories[key].description + '<br>';
+      }
+
+      return div;
+  };
+
+  return legend;
 }
 
 export {
