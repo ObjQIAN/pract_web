@@ -9,20 +9,51 @@ function initializeMap(curbInfo,poiInfo, events) {
  
   const curbLayer = L.layerGroup(); 
   const poiLayer = L.layerGroup();
+  const markerLayer = L.layerGroup();
+  markerLayer.addTo(map);
   curbLayer.addTo(map); 
   poiLayer.addTo(map);
 
   events.addEventListener('filter-curb', (evt) => { // when the user filters the stations
     const filteredCurbsGrp = evt.detail.filteredCurbs;
+    //console.log('Filtered curbsbgrp:', filteredCurbsGrp);
     const filteredCurbs = filteredCurbsGrp.length > 0 ? filteredCurbsGrp[0] : null;
-    zoomtoFilteredCurbs(filteredCurbs, curbLayer);
+    //console.log('Filtered curbs:', filteredCurbs);
+    
+    const coords = filteredCurbs.geometry.coordinates;
+      const midIndex = Math.floor(coords.length / 2);
+      const [lngMid, latMid] = coords[midIndex]; // Getting the midpoint coordinate pair
+      const marker = L.marker([latMid, lngMid]);//.addTo(map)
+      markerLayer.addLayer(marker);
+      marker.bindPopup(
+        `
+          <h2 class="country-name">${filteredCurbs.properties.strt_nm}</h2>
+          <p class="continent">Start Street: ${filteredCurbs.properties.strt_s_}</p>
+          <p class="continent">End Street: ${filteredCurbs.properties.end_st_}</p>
+          <p class="continent">Street Policy: ${filteredCurbs.properties.rgltn_t}</p>
+          <p class="area_km2">Street Class: ${filteredCurbs.properties.Road_Class}</p>
+        `
+      );
+      marker.openPopup();
+     map.setView([latMid, lngMid], 18);
+
   });
+
+
+  events.addEventListener('reset-curbs', (evt) => { // when the user filters the stations
+    map.closePopup();
+    markerLayer.clearLayers();
+    map.setView([39.95, -75.16], 15);
+  });
+
+
   var baseMaps = {
     "Base Map": mapBoxBase,
   };
   var overlayMaps = {
     "Curbs": curbLayer,
     "Points of Interest": poiLayer
+    
   };
   var layerControl = L.control.layers(baseMaps,overlayMaps).addTo(map)
   updateWorldMap(curbInfo, curbLayer); // add all the countries to the map
@@ -46,6 +77,7 @@ function initializeMap(curbInfo,poiInfo, events) {
 }
 
 function updatePOIMap(poiInfo, poiLayer) {
+
   poiLayer.clearLayers();  // Clear the existing layer
 
   // Collect data for the heatmap
@@ -95,8 +127,8 @@ function updateWorldMap(curbInfo, curbLayer) {
         const popupContent = `
           <h2 class="country-name">${feature.properties.strt_nm}</h2>
           <p class="continent">Start Street: ${feature.properties.strt_s_}</p>
-          <p class="continent">End Street: ${feature.properties.TARGET_FID}</p>
-          <p class="continent">Street Policy: ${feature.properties.categry}</p>
+          <p class="continent">End Street: ${feature.properties.end_st_}</p>
+          <p class="continent">Street Policy: ${feature.properties.rgltn_t}</p>
           <p class="area_km2">Street Class: ${feature.properties.Road_Class}</p>
         `;
         layer.bindPopup(popupContent);
@@ -117,27 +149,39 @@ function getstyle(feature) {
 
   if (feature.properties) {
       // Change color and weight based on the status property
-      switch (feature.properties.Road_Class) {
-          case 1:
+      switch (feature.properties.rgltn_t) {
+          case "no_stopping":
               color = '#FFBC00';
               weight = 2;
               
               break;
-          case 2:
+          case "parking":
               color = '#FF9D00';
               weight = 3;
               break;
-          case 3:
+          case "time_limited_parking":
               color = '#FF4800';
               weight = 4;
               break;
-          case 4:
+          case "loading":
               color = '#FF5F47';
               weight = 5;
               break;
-          case 5:
+          case "passenger":
               color = '#FF4AD0';
               weight = 7;
+              break;
+          case "pay_parking":
+              color = '#FF19A6';
+              weight = 9;
+              break;
+          case "no_parking":
+              color = '#FF19A6';
+              weight = 9;
+              break;
+          case "no_standing":
+              color = '#FF19A6';
+              weight = 9;
               break;
           default:
               color = '#FFDF19';
@@ -150,41 +194,6 @@ function getstyle(feature) {
       weight: weight,
       opacity: 1
   };
-}
-
-function zoomtoFilteredCurbs(filteredCurbs, curbLayer) {
-    // Check if there are any filtered curbs
-    if (filteredCurbs.length === 0) {
-      // No filtered curbs, so do nothing or handle this case as needed
-      return;
-    }
-  
-    // Initialize bounds to null
-    let bounds = null;
-  
-    // Iterate over each filtered curb
-    filteredCurbs.forEach(curb => {
-      // Get the geographic coordinates of the curb
-      const coordinates = curb.geometry.coordinates;
-  
-      // Iterate over each coordinate to update the bounds
-      coordinates.forEach(coordinate => {
-        // Create a LatLng object from the coordinate pair
-        const latLng = L.latLng(coordinate[1], coordinate[0]);
-  
-        // Extend the bounds to include the LatLng object
-        if (!bounds) {
-          bounds = L.latLngBounds(latLng, latLng);
-        } else {
-          bounds.extend(latLng);
-        }
-      });
-    });
-  
-    // Fit the map to the bounds of the filtered curbs
-    if (bounds) {
-      curbLayer.map.fitBounds(bounds);
-    }
 }
 
 export {

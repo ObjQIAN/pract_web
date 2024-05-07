@@ -68,8 +68,8 @@ body {
   color: white;
 }
 
-.map {
-  height: 50vh;
+.map { 
+  height: 95vh;
   background-color: aliceblue;  
   position: absolute;
   bottom: 0px; 
@@ -79,7 +79,10 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+  transition: height 1s ease; /* Adjust '2s' to control the speed */
 }
+
+
 
 
 .header-contianer{

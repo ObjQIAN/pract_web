@@ -11,10 +11,10 @@ import { initializeDynamics } from './initializeDynamics.js';
 import { dateChart } from './dataCharts.js';  
 
 
-const CurbInfoResp = await fetch('https://raw.githubusercontent.com/ObjQIAN/warehousepub/main/filtered.geojson');
+const CurbInfoResp = await fetch('https://raw.githubusercontent.com/ObjQIAN/warehousepub/main/filtered_2.geojson');
 const CurbInfo = await CurbInfoResp.json();
 
-const CurbInfoRespA = await fetch('https://canvasjs.com/data/docs/ltceur2018.json');
+const CurbInfoRespA = await fetch('https://raw.githubusercontent.com/ObjQIAN/warehousepub/main/result_small.json');
 const dataForCurb = await CurbInfoRespA.json();
 
 const poiInfoRespA = await fetch('https://raw.githubusercontent.com/ObjQIAN/pract_web/main/data/poi_pt.geojson');

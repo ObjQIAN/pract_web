@@ -29,17 +29,18 @@ function initializeContinentFilter(curbInfo, events) {
 
     // Update the selectors based on the new selection
     events.dispatchEvent(new CustomEvent('reset-curbs')); // This is optional and based on your app's logic
-    
+    var map = document.getElementById('map');
+    map.style.height = '95vh';
     //this is a fail apprently
     events.addEventListener('reset-curbs', function() {
-        console.log("Filtered curbs data being cleared.");
+        //console.log("Filtered curbs data being cleared.");
         filteredCurbsDataStore.clear();
         updateUIAccordingly();
     });
 
 
     initializeContinentFilter(curbInfo, events);
-    console.log("Selections cleared");
+    //console.log("Selections cleared");
 });
 
 
@@ -85,6 +86,10 @@ function updateSelectorsBasedOnSelection(select, select1, select2, allFeatures, 
     const newEvent = new CustomEvent('filter-curb', { detail: { filteredCurbs } });
     events.dispatchEvent(newEvent);
     console.log("Custom event dispatched with filtered curbs:", filteredCurbs);
+
+    //change css of 'map'
+    var map = document.getElementById('map');
+    map.style.height = '50vh';
 }
 }
 
