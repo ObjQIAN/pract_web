@@ -1,7 +1,7 @@
 function initializeMap(curbInfo,poiInfo, events) {
   const map = L.map('map').setView([39.95, -75.16], 15); // center of Philadelphia
 
-  var mapBoxBase = L.tileLayer('https://api.mapbox.com/styles/v1/ltscqian/clvcrfxcn04dr01pk2ig08a1e/tiles/256/{z}/{x}/{y}@2x?access_token={apiKey}', {
+  var mapBoxBase = L.tileLayer('https://api.mapbox.com/styles/v1/ltscqian/clvwmucxd09gh01nu2hg0ag1p/tiles/256/{z}/{x}/{y}@2x?access_token={apiKey}', {
     apiKey: 'pk.eyJ1IjoibHRzY3FpYW4iLCJhIjoiY2t1MGhqcDc2MWU2dzJ1dGh1MnRlanJkYiJ9.evZuw4tNS1sR4QF9vta6xQ',
     maxZoom: 24,
     attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
@@ -109,7 +109,7 @@ function updatePOIMap(poiInfo, poiLayer) {
       0.4: '#64e4c0',   // Green
       0.6: '#85d983',   // Yellow
       0.8: '#c3af33',   // Orange
-      1.0: '#eb7912'    // Red
+      1.0: '#F55627'    // Red
     }  // Color gradient
   });
 
@@ -203,7 +203,7 @@ function createLegend() {
 
   legend.onAdd = function (map) {
       var div = L.DomUtil.create('div', 'info legend');
-      div.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';  // Set background color
+      div.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';  // Set background color
       div.style.padding = '10px';           // Add some padding
       div.style.border = '2px solid #777';  // Add a border
       div.style.borderRadius = '5px';       // Optional: Rounded corners
